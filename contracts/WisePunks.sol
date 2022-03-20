@@ -3,8 +3,10 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "./Base64.sol";
+import "./WisePunksDNA.sol";
 
-contract WisePunks is ERC721, ERC721Enumerable {
+contract WisePunks is ERC721, ERC721Enumerable, WisePunksDNA {
     using Counters for Counters.Counter;
 
     Counters.Counter private _idCounter;
@@ -29,7 +31,7 @@ contract WisePunks is ERC721, ERC721Enumerable {
     {
         require(_exists(tokenId), "Token does not exist");
 
-        string memory jsonURI = string(
+        string memory jsonURI = Base64.encode(
             abi.encodePacked(
                 ' {"name": "WisePunks #" ',
                 tokenId,
@@ -39,7 +41,8 @@ contract WisePunks is ERC721, ERC721Enumerable {
             )
         );
 
-        return jsonURI;
+        return
+            string(abi.encodePacked("data:application/json;base64", jsonURI));
     }
 
     //override
