@@ -2,5 +2,13 @@
   "name": "wisepunks",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.5",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "chai": "^4.3.6",
+    "ethereum-waffle": "^4.0.0-alpha.0",
+    "ethers": "^5.6.1",
+    "hardhat": "^2.9.1"
+  }
 }
